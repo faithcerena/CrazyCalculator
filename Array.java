@@ -11,7 +11,6 @@ public class Array {
   }
 
   public void print(){
-    System.out.println("\nLINKED LIST");
     linkedList.print();
   }
 
