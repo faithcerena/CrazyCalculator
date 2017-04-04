@@ -9,6 +9,7 @@ public class CalculatorFrame extends JFrame {
   private int index = 0;
   private int ctr4 = 0;
   private int count = 0;
+  int left = 0, right = 0;
 
   private double ans = 0;
   private double result = 0;
@@ -16,6 +17,7 @@ public class CalculatorFrame extends JFrame {
   private boolean flag = true;
   private boolean flag2 = true;
   private boolean flag3 = false;
+  private boolean flag4 = false;
   private boolean isError = false;
 
   private String temp = "";
@@ -112,6 +114,7 @@ public class CalculatorFrame extends JFrame {
     }
 
     String ans = String.valueOf(result);
+
     if(ans.charAt(ans.length()-1) == '0' && ans.charAt(ans.length()-2) == '.'){
       ans = ans.substring(0, ans.length() - 2);
       answerLabel.setText(ans);
@@ -163,11 +166,11 @@ public class CalculatorFrame extends JFrame {
     return ans;
   }
 
-  public static boolean isNum(String strNum) {
+  public boolean isNum(String strNum) {
     boolean ret = true;
     try {
       Double.parseDouble(strNum);
-    }catch (NumberFormatException e) {
+    }catch (NumberFormatException e){
       ret = false;
     }
     return ret;
@@ -245,13 +248,18 @@ public class CalculatorFrame extends JFrame {
         answerLabel.setText("");
 
         for(int i =0; i < 20; i++){
-          LinkedList.finalString[i] = "";
-          arrayString[i] = "";
-          parsedString[i] = "";
-          parsed[i].setText(parsedString[i]);
-          read[i].setText(arrayString[i]);
-          written[i].setText("");
-          stacks[i].setText("");
+          try{
+
+            LinkedList.finalString[i] = "";
+            arrayString[i] = "";
+            parsedString[i] = "";
+            parsed[i].setText(parsedString[i]);
+            read[i].setText(arrayString[i]);
+            written[i].setText("");
+            stacks[i].setText("");
+          }catch(Exception e){
+
+          }
         }
 
         inputLabel.setBounds(519, 138, 300, 80);
@@ -262,15 +270,23 @@ public class CalculatorFrame extends JFrame {
         postfix = null;
         stack = null;
         isError = false;
+        left = 0;
+        right = 0;
         answerLabel.setFont(new Font("Open Sans", Font.PLAIN, 60));
       }
 
       if(flag2){
         if(inputLabel.getText().length() != 16){
           if(event.getSource() == buttons[16]){
-            string = string + "0";
-            spaceString = spaceString + "0";
-            flag = true;
+            //restricted #1
+            if(inputLabel.getText().equals("0")){
+              inputLabel.setText("0");
+            }else{
+              string = string + "0";
+              spaceString = spaceString + "0";
+              flag = true;
+
+            }
           }
           if(event.getSource() == buttons[12]){
             string = string + "1";
@@ -317,18 +333,27 @@ public class CalculatorFrame extends JFrame {
             spaceString = spaceString + "9";
             flag = true;
           }
-          if(event.getSource() == buttons[17]){
+
+          if((event.getSource() == buttons[17] && flag == false )||(event.getSource() == buttons[17] && inputLabel.getText().equals("0") ) ){
             string = string + "(";
             spaceString = spaceString + "( ";
             flag = false;
+            flag4 = true;
+            left++;
           }
-          if(event.getSource() == buttons[18]){
-            string = string + ")";
-            spaceString = spaceString + " )";
-            flag = true;
+          if((event.getSource() == buttons[18])){
+            if(inputLabel.getText().equals("0")){
+              inputLabel.setText("0");
+            }else{
+              string = string + ")";
+              spaceString = spaceString + " )";
+              flag = true;
+              right++;
+            }
+            flag4 = false;
           }
-
           if(!inputLabel.getText().equals("0") && flag){
+
             if(event.getSource() == buttons[15]){
               string = string + "+";
               spaceString = spaceString + " + ";
@@ -349,6 +374,7 @@ public class CalculatorFrame extends JFrame {
               spaceString = spaceString + " / ";
               flag = false;
             }
+
             parsedString[count++] = string;
           }
 
@@ -424,101 +450,112 @@ public class CalculatorFrame extends JFrame {
           stack = new Stack(index);
           postfix = new String[index];
 
-          String previousChar = "", previousOperation = "";
-          int left = 0, right = 0;
-          for(int i = 0; i < index; i++){
-            String current = arrayString[i];
-            if(current.equals("+")||current.equals("-")||current.equals("*")||current.equals("/")){
-              if(stack.isEmpty()){
-                stack.push(current);
-              }else{
-                if(current.equals("-") || current.equals("+")){
-                    if(!previousOperation.equals(""))
+          String previousChar = "", previousOperation = "", previousOperation2 = "";
+
+          if(left >= right){
+            for(int i = 0; i < index; i++){
+              String current = arrayString[i];
+              if(current.equals("+")||current.equals("-")||current.equals("*")||current.equals("/")){
+                if(stack.isEmpty()){
+                  stack.push(current);
+                }else{
+                  if(current.equals("-") || current.equals("+")){
+                      if(previousOperation.equals("*") || previousOperation.equals("/")){
+                        postfix[ctr4++] = stack.pop();
+                        if(previousOperation2.equals("+") || previousOperation2.equals("-"))
+                          postfix[ctr4++] = stack.pop();
+                      }
+                      else if(previousOperation.equals("+") || previousOperation.equals("-")){
+                        postfix[ctr4++] = stack.pop();
+                      }
+                    stack.push(current);
+                  }if(current.equals("*") || current.equals("/")){
+                    if(previousOperation.equals("*") || previousOperation.equals("/")){
                       postfix[ctr4++] = stack.pop();
-                  stack.push(current);
-                }if(current.equals("*") || current.equals("/")){
-                  if(previousOperation.equals("*") || previousOperation.equals("/")){
-                    postfix[ctr4++] = stack.pop();
+                    }
+                    stack.push(current);
                   }
-                  stack.push(current);
                 }
+                previousOperation2 = previousOperation;
+                previousOperation = current;
               }
-              previousOperation = current;
-            }
-            else if(current.equals("(")){
-              left++;
+              else if(current.equals("(")){
+                if(i == index - 1){
+                  isError = true;
+                  break;
+                }
+                stack.push(current);
+                previousOperation = "";
+              }else if(current.equals(")")){
+                if(i == 0){
+                  isError = true;
+                  break;
+                }
+                else{
+                  if(left != 0){
+                    while(true){
+                      String temp = stack.pop();
+
+                      if(!temp.equals("("))
+                        postfix[ctr4++] = temp;
+
+                      else break;
+                    }
+                  }
+                }
+              }else{
+                if(current.equals("0") && previousChar.equals("/")){
+                  isError = true;
+                  break;
+                }
+                postfix[ctr4++] = current;
+              }
+
+              previousChar = current;
+
+              String[] temporary = new String[index];
               if(i == index - 1){
-                isError = true;
-                break;
-              }
-              stack.push(current);
-              previousOperation = "";
-            }else if(current.equals(")")){
-              right++;
-              if(i == 0){
-                isError = true;
-                break;
-              }
-              else{
-                while(true){
-                  String temp = stack.pop();
-
-                  if(!temp.equals("("))
-                    postfix[ctr4++] = temp;
-
-                  else break;
+                int ctr = 0;
+                while(!stack.isEmpty()){
+                  temporary[ctr++] = stack.pop();
+                }
+                for(int m = ctr - 1 ; m >= 0; m--){
+                  postfix[ctr4++] = temporary[m];
                 }
               }
-            }else{
-              if(current.equals("0") && previousChar.equals("/")){
-                isError = true;
-                break;
+
+              String st = "";
+              for(int j = 0; j < ctr4; j++){
+                if(!postfix[j].equals(")") && !postfix[j].equals("(")){
+                  st += postfix[j] + " ";
+                }
               }
-              postfix[ctr4++] = current;
-            }
+              stack.print();
+              written[i].setText(st);
+              written[i].setFont(new Font("Open Sans", Font.PLAIN, 11));
+              written[i].setForeground(new Color(10,10,10));
+              written[i].setBounds(317, 160+yLabel, 200, 80);
+              written[i].setVisible(false);
+              mainPanel.add(written[i]);
 
-            previousChar = current;
-
-            if(i == index - 1){
-              while(!stack.isEmpty()){
-                String lol = stack.pop();
-                postfix[ctr4++] = lol;
+              for(int j = LinkedList.storeIn-1; j >= 0; j--){
+                stacks[i].setText(stacker);
+                stacks[i].setFont(new Font("Open Sans", Font.PLAIN, 11));
+                stacks[i].setForeground(new Color(10,10,10));
+                stacks[i].setBounds(407, 160+yLabel, 200, 80);
+                mainPanel.add(stacks[i]);
+                stacks[i].setVisible(false);
+                repaint();
+                revalidate();
               }
-            }
 
-            String st = "";
-            for(int j = 0; j < ctr4; j++){
-              if(!postfix[j].equals(")") && !postfix[j].equals("(")){
-                st += postfix[j] + " ";
-              }
-            }
-            stack.print();
-            written[i].setText(st);
-            written[i].setFont(new Font("Open Sans", Font.PLAIN, 11));
-            written[i].setForeground(new Color(10,10,10));
-            written[i].setBounds(317, 160+yLabel, 200, 80);
-            written[i].setVisible(false);
-            mainPanel.add(written[i]);
-
-            for(int j = LinkedList.storeIn-1; j >= 0; j--){
-              stacks[i].setText(stacker);
-              stacks[i].setFont(new Font("Open Sans", Font.PLAIN, 11));
-              stacks[i].setForeground(new Color(10,10,10));
-              stacks[i].setBounds(407, 160+yLabel, 200, 80);
-              mainPanel.add(stacks[i]);
-              stacks[i].setVisible(false);
               repaint();
               revalidate();
+              yLabel += 20;
+              tempo = st.split(" ");
             }
-
-            repaint();
-            revalidate();
-            yLabel += 20;
-            tempo = st.split(" ");
-
-            System.out.println();
           }
-          
+
           if(left != right){
             isError = true;
           }
@@ -540,16 +577,15 @@ public class CalculatorFrame extends JFrame {
           yLabel= 0;
           count = 0;
 
-
           try{
             evaluate(tempo);
-          }catch(NullPointerException e){}
+          }catch(NullPointerException e){
+            isError = true;
+          }
             if(isNum(inputLabel.getText()) && event.getSource() == buttons[19]){
               string = inputLabel.getText();
-              System.out.println("SAD");
               answerLabel.setText(string);
             }
-
 
           if(event.getSource() == buttons[19] && flag3 == true){
             try{
@@ -567,9 +603,10 @@ public class CalculatorFrame extends JFrame {
           count = 0;
           result = 0;
           isError = false;
+          left = 0;
+          right = 0;
         }
 
-        System.out.println("HEHEH" + inputLabel.getText());
         if(inputLabel.getText().equals("") || inputLabel.getText().equals("0")){
           inputLabel.setText("0");
           inputLabel.setBounds(519, 138, 300, 80);
