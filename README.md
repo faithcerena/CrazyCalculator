@@ -7,8 +7,8 @@ Created by:
   * BS Computer Science II
 
 Submitted to:
-  Mr. Victor M. Romero II
-  *University of the Philippines Visayas Tacloban College
+  - Mr. Victor M. Romero II
+  * University of the Philippines Visayas Tacloban College
 
 Instructions to Execute File:
   * Save everything (source codes, classes and images)
