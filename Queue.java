@@ -19,10 +19,10 @@ public class Queue {
   }
 
   public void print(){
-    for(int i = 0; i < arrays.length; i++){
-      if(arrays[i] != null)
-      // System.out.println(arrays[i]);
-    }
+//     for(int i = 0; i < arrays.length; i++){
+//       if(arrays[i] != null)
+//       System.out.println(arrays[i]);
+//     }
     // System.out.println("\nARRAY");
     array.print();
   }
