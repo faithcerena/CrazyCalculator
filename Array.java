@@ -17,5 +17,4 @@ public class Array {
   public String del(){
       return linkedList.del().string;
   }
-
 }
