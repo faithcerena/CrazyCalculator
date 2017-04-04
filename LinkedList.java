@@ -41,11 +41,9 @@ public class LinkedList {
       str += finalString[j];
       tempStr += finalString[j];
 
-      System.out.print(str);
       str = "";
     }
     CalculatorFrame.stacker = tempStr;
     tempStr = "";
-
   }
 }
