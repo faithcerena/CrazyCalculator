@@ -9,7 +9,8 @@ public class CalculatorFrame extends JFrame {
   private int index = 0;
   private int ctr4 = 0;
   private int count = 0;
-  int left = 0, right = 0;
+  private int left = 0;
+  private int right = 0;
 
   private double ans = 0;
   private double result = 0;
@@ -18,6 +19,7 @@ public class CalculatorFrame extends JFrame {
   private boolean flag2 = true;
   private boolean flag3 = false;
   private boolean flag4 = false;
+
   private boolean isError = false;
 
   private String temp = "";
@@ -41,6 +43,8 @@ public class CalculatorFrame extends JFrame {
   private JLabel answerLabel = new JLabel("", SwingConstants.RIGHT);
   private JLabel barLabel = new JLabel(new ImageIcon("Images/bar.png"));
   private JLabel closeBarLabel = new JLabel(new ImageIcon("Images/closeBar.png"));
+  private JLabel barLabel2 = new JLabel(new ImageIcon("Images/bar2.png"));
+  private JLabel closeBarLabel2 = new JLabel(new ImageIcon("Images/closeBar2.png"));
 
   private JLabel[] buttons = new JLabel[20];
   private JLabel[] read = new JLabel[20];
@@ -92,6 +96,15 @@ public class CalculatorFrame extends JFrame {
     closeBarLabel.addMouseListener(handler);
     closeBarLabel.setVisible(false);
     mainPanel.add(closeBarLabel);
+
+    barLabel2.setBounds(832, 158, 23, 407);
+    barLabel2.addMouseListener(handler);
+    mainPanel.add(barLabel2);
+
+    closeBarLabel2.setBounds(1160, 157, 23, 407);
+    closeBarLabel2.addMouseListener(handler);
+    closeBarLabel2.setVisible(false);
+    mainPanel.add(closeBarLabel2);
   }
 
   public void evaluate(String[] s){
@@ -114,7 +127,6 @@ public class CalculatorFrame extends JFrame {
     }
 
     String ans = String.valueOf(result);
-
     if(ans.charAt(ans.length()-1) == '0' && ans.charAt(ans.length()-2) == '.'){
       ans = ans.substring(0, ans.length() - 2);
       answerLabel.setText(ans);
@@ -166,11 +178,11 @@ public class CalculatorFrame extends JFrame {
     return ans;
   }
 
-  public boolean isNum(String strNum) {
+  public static boolean isNum(String strNum) {
     boolean ret = true;
     try {
       Double.parseDouble(strNum);
-    }catch (NumberFormatException e){
+    }catch (NumberFormatException e) {
       ret = false;
     }
     return ret;
@@ -206,7 +218,7 @@ public class CalculatorFrame extends JFrame {
       }
 
       if(event.getSource() == barLabel){
-        barLabel.setIcon(new ImageIcon("Images/window.png"));
+        barLabel.setIcon(new ImageIcon("Images/window3.png"));
         barLabel.setBounds(194, 158, 330, 404);
         closeBarLabel.setVisible(true);
         try{
@@ -220,6 +232,12 @@ public class CalculatorFrame extends JFrame {
           }
         }catch(Exception e){}
         flag3 = true;
+      }
+
+      if(event.getSource() == barLabel2){
+        barLabel2.setIcon(new ImageIcon("Images/window2.png"));
+        barLabel2.setBounds(830, 158, 330, 404);
+        closeBarLabel2.setVisible(true);
       }
 
       if(event.getSource() == closeBarLabel){
@@ -249,7 +267,6 @@ public class CalculatorFrame extends JFrame {
 
         for(int i =0; i < 20; i++){
           try{
-
             LinkedList.finalString[i] = "";
             arrayString[i] = "";
             parsedString[i] = "";
@@ -257,9 +274,7 @@ public class CalculatorFrame extends JFrame {
             read[i].setText(arrayString[i]);
             written[i].setText("");
             stacks[i].setText("");
-          }catch(Exception e){
-
-          }
+          }catch(Exception e){}
         }
 
         inputLabel.setBounds(519, 138, 300, 80);
@@ -342,18 +357,13 @@ public class CalculatorFrame extends JFrame {
             left++;
           }
           if((event.getSource() == buttons[18])){
-            if(inputLabel.getText().equals("0")){
-              inputLabel.setText("0");
-            }else{
-              string = string + ")";
-              spaceString = spaceString + " )";
-              flag = true;
-              right++;
-            }
+            string = string + ")";
+            spaceString = spaceString + " )";
+            flag = true;
             flag4 = false;
+            right++;
           }
           if(!inputLabel.getText().equals("0") && flag){
-
             if(event.getSource() == buttons[15]){
               string = string + "+";
               spaceString = spaceString + " + ";
@@ -460,14 +470,15 @@ public class CalculatorFrame extends JFrame {
                   stack.push(current);
                 }else{
                   if(current.equals("-") || current.equals("+")){
-                      if(previousOperation.equals("*") || previousOperation.equals("/")){
-                        postfix[ctr4++] = stack.pop();
-                        if(previousOperation2.equals("+") || previousOperation2.equals("-"))
+                        if(previousOperation.equals("*") || previousOperation.equals("/")){
                           postfix[ctr4++] = stack.pop();
-                      }
-                      else if(previousOperation.equals("+") || previousOperation.equals("-")){
-                        postfix[ctr4++] = stack.pop();
-                      }
+                          if(previousOperation2.equals("+") || previousOperation2.equals("-"))
+                            postfix[ctr4++] = stack.pop();
+                        }
+                        else if(previousOperation.equals("+") || previousOperation.equals("-")){
+                          postfix[ctr4++] = stack.pop();
+                        }
+                      //}
                     stack.push(current);
                   }if(current.equals("*") || current.equals("/")){
                     if(previousOperation.equals("*") || previousOperation.equals("/")){
@@ -480,6 +491,7 @@ public class CalculatorFrame extends JFrame {
                 previousOperation = current;
               }
               else if(current.equals("(")){
+                left++;
                 if(i == index - 1){
                   isError = true;
                   break;
@@ -487,20 +499,19 @@ public class CalculatorFrame extends JFrame {
                 stack.push(current);
                 previousOperation = "";
               }else if(current.equals(")")){
+                right++;
                 if(i == 0){
                   isError = true;
                   break;
                 }
                 else{
-                  if(left != 0){
-                    while(true){
-                      String temp = stack.pop();
+                  while(true){
+                    String temp = stack.pop();
 
-                      if(!temp.equals("("))
-                        postfix[ctr4++] = temp;
+                    if(!temp.equals("("))
+                      postfix[ctr4++] = temp;
 
-                      else break;
-                    }
+                    else break;
                   }
                 }
               }else{
@@ -513,14 +524,10 @@ public class CalculatorFrame extends JFrame {
 
               previousChar = current;
 
-              String[] temporary = new String[index];
               if(i == index - 1){
-                int ctr = 0;
                 while(!stack.isEmpty()){
-                  temporary[ctr++] = stack.pop();
-                }
-                for(int m = ctr - 1 ; m >= 0; m--){
-                  postfix[ctr4++] = temporary[m];
+                  String lol = stack.pop();
+                  postfix[ctr4++] = lol;
                 }
               }
 
@@ -553,13 +560,12 @@ public class CalculatorFrame extends JFrame {
               revalidate();
               yLabel += 20;
               tempo = st.split(" ");
+
             }
           }
-
           if(left != right){
             isError = true;
           }
-
           for(int i = 0, yLabel = 0; i < 20; i++, yLabel+=20){
             if(parsedString[0].equals("") && i ==0){
               yLabel-=20;
@@ -577,11 +583,10 @@ public class CalculatorFrame extends JFrame {
           yLabel= 0;
           count = 0;
 
+
           try{
             evaluate(tempo);
-          }catch(NullPointerException e){
-            isError = true;
-          }
+          }catch(NullPointerException e){}
             if(isNum(inputLabel.getText()) && event.getSource() == buttons[19]){
               string = inputLabel.getText();
               answerLabel.setText(string);
