@@ -2,9 +2,9 @@
 Machine Problem 1 (Crazy Calculator)
 
 Created by:
-  Faith Cerena
-  Christopher Jan Rinos
-  BS Computer Science II
+  - Faith Cerena
+  - Christopher Jan Rinos
+ BS Computer Science II
 
 Instructions to Execute File:
   * Save everything (source codes, classes and images)
