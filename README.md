@@ -2,16 +2,16 @@
 Machine Problem 1 (Crazy Calculator)
 
 
-  Created by:
-    - Faith Cerena
-    - Christopher Jan Rinos
+Created by:
+  - Faith Cerena
+  - Christopher Jan Rinos
 
-  BS Computer Science II
+BS Computer Science II
 
-  Submitted to:
-    - Mr. Victor M. Romero II
+Submitted to:
+  - Mr. Victor M. Romero II
 
-  University of the Philippines Visayas Tacloban College
+University of the Philippines Visayas Tacloban College
 
 
 Instructions to Execute File:
