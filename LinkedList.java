@@ -40,7 +40,6 @@ public class LinkedList {
     for(int j = storeIn-1; j >= 0; j--){
       str += finalString[j];
       tempStr += finalString[j];
-
       str = "";
     }
     CalculatorFrame.stacker = tempStr;
