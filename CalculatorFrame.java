@@ -455,7 +455,7 @@ public class CalculatorFrame extends JFrame {
               previousOperation = "";
             }else if(current.equals(")")){
               right++;
-              if(i == 0 || left != right){
+              if(i == 0){
                 isError = true;
                 break;
               }
@@ -517,6 +517,10 @@ public class CalculatorFrame extends JFrame {
             tempo = st.split(" ");
 
             System.out.println();
+          }
+          
+          if(left != right){
+            isError = true;
           }
 
           for(int i = 0, yLabel = 0; i < 20; i++, yLabel+=20){
