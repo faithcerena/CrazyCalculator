@@ -10,6 +10,7 @@ public class Stack {
 
   public void push(String string){
     array[ctr++] = string;
+    //System.out.println(string);
     queue.enqueue(string);
   }
 
@@ -23,10 +24,11 @@ public class Stack {
   }
 
   public void print(){
-    // for(int i = 0; i < array.length; i++){
-    //   System.out.println(array[i]);
-    // }
-    // System.out.println("\nQUEUE");
+    for(int i = 0; i < array.length; i++){
+      if(array[i] != null)
+      //System.out.println(array[i]);
+    }
+    //System.out.println("\nQUEUE");
     queue.print();
   }
 }
