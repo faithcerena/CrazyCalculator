@@ -11,12 +11,10 @@ public class Array {
   }
 
   public void print(){
-    System.out.println("\nLINKED LIST");
     linkedList.print();
   }
 
   public String del(){
       return linkedList.del().string;
   }
-
 }
