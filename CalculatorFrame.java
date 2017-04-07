@@ -52,7 +52,6 @@ public class CalculatorFrame extends JFrame{
   private JLabel closeBarLabel = new JLabel(new ImageIcon("Images/closeBar.png"));
   private JLabel barLabel2 = new JLabel(new ImageIcon("Images/bar2.png"));
   private JLabel closeBarLabel2 = new JLabel(new ImageIcon("Images/closeBar2.png"));
-<<<<<<< HEAD
 
   public static JLabel readLabel = new JLabel("", SwingConstants.LEFT);
   public static JLabel parsedLabel = new JLabel("", SwingConstants.LEFT);
@@ -61,8 +60,6 @@ public class CalculatorFrame extends JFrame{
   public static JLabel stackLabel = new JLabel("", SwingConstants.LEFT);
   public static JLabel queueLabel = new JLabel("", SwingConstants.LEFT);
   public static JLabel arrayLabel = new JLabel("", SwingConstants.LEFT);
-=======
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
 
   private JLabel[] buttons = new JLabel[20];
   private JLabel[] read = new JLabel[20];
@@ -181,8 +178,6 @@ public class CalculatorFrame extends JFrame{
     mainPanel.add(evaluate_evaluate);
     mainPanel.add(evaluate_result);
 
-=======
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
   }
 
   public void evaluate(String[] s){
@@ -335,7 +330,6 @@ public class CalculatorFrame extends JFrame{
         barLabel2.setIcon(new ImageIcon("Images/window2.png"));
         barLabel2.setBounds(830, 158, 330, 404);
         closeBarLabel2.setVisible(true);
-<<<<<<< HEAD
         evaluate_read.setVisible(true);
         evaluate_stack.setVisible(true);
         evaluate_evaluate.setVisible(true);
@@ -349,8 +343,6 @@ public class CalculatorFrame extends JFrame{
         writtenLabel.setVisible(true);
         repaint();
         revalidate();
-=======
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
       }
 
       if(event.getSource() == closeBarLabel){
@@ -414,7 +406,6 @@ public class CalculatorFrame extends JFrame{
 
         for(int i =0; i < 20; i++){
           try{
-<<<<<<< HEAD
             read[i].setText("");
             parsed[i].setText("");
             written[i].setText("");
@@ -422,7 +413,6 @@ public class CalculatorFrame extends JFrame{
             arrayString[i] = "";
             parsedString[i] = "";
             LinkedList.finalString[i] = "";
-=======
             LinkedList.finalString[i] = "";
             arrayString[i] = "";
             parsedString[i] = "";
@@ -430,7 +420,6 @@ public class CalculatorFrame extends JFrame{
             read[i].setText(arrayString[i]);
             written[i].setText("");
             stacks[i].setText("");
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
           }catch(Exception e){}
         }
 
@@ -445,31 +434,20 @@ public class CalculatorFrame extends JFrame{
         postfix = null;
         stack = null;
         isError = false;
-<<<<<<< HEAD
-=======
         left = 0;
         right = 0;
         answerLabel.setFont(new Font("Open Sans", Font.PLAIN, 60));
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
       }
 
       if(flag2){
         if(inputLabel.getText().length() != 16){
           if(event.getSource() == buttons[16]){
-<<<<<<< HEAD
-=======
-            //restricted #1
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
             if(inputLabel.getText().equals("0")){
               inputLabel.setText("0");
             }else{
               string = string + "0";
               spaceString = spaceString + "0";
               flag = true;
-<<<<<<< HEAD
-=======
-
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
             }
           }
           if(event.getSource() == buttons[12]){
@@ -524,7 +502,6 @@ public class CalculatorFrame extends JFrame{
             flag = false;
             flag4 = true;
             left++;
-<<<<<<< HEAD
             counterB1++;
           }
           if(counterB2 < counterB1){
@@ -537,7 +514,6 @@ public class CalculatorFrame extends JFrame{
               counterB2++;
             }
 
-=======
           }
           if((event.getSource() == buttons[18])){
             string = string + ")";
@@ -545,7 +521,6 @@ public class CalculatorFrame extends JFrame{
             flag = true;
             flag4 = false;
             right++;
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
           }
           if(!inputLabel.getText().equals("0") && flag){
             if(event.getSource() == buttons[15]){
@@ -626,11 +601,8 @@ public class CalculatorFrame extends JFrame{
           }
           String sss = "";
           arrayString[index] = "END";
-<<<<<<< HEAD
           for(int i = 0, y = 0; i < arrayString.length; i++, y+=20){
-=======
           for(int i = 0, y = 0; i <= index; i++, y+=20){
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
             written[i] = new JLabel("", SwingConstants.CENTER);
             stacks[i] = new JLabel("", SwingConstants.CENTER);
 
@@ -644,7 +616,6 @@ public class CalculatorFrame extends JFrame{
             mainPanel.add(read[i]);
             read[i].setVisible(false);
 
-<<<<<<< HEAD
           }
           String sss = "";
           for(int i = 0, y = 0; i < index; i++, y+=20){
@@ -657,14 +628,10 @@ public class CalculatorFrame extends JFrame{
             parsed[i].setBounds(190, 160+y, 200, 80);
             mainPanel.add(parsed[i]);
             parsed[i].setVisible(false);
-=======
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
             repaint();
             revalidate();
           }
 
-<<<<<<< HEAD
-=======
           for(int i = 0, y = 0; i < index; i++, y+=20){
             sss += arrayString[i];
 
@@ -679,25 +646,20 @@ public class CalculatorFrame extends JFrame{
             revalidate();
           }
 
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
 
           stack = new Stack(index);
           postfix = new String[index];
 
-<<<<<<< HEAD
           String[] status = new String[50];
           String[] readParsed = new String[50];
           String[] staqueray = new  String[50];
           String[] staqueray2 = new  String[50];
           int ctr = 0, ctr2 = 0, ctr3 = 0;
 
-=======
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
           String previousChar = "", previousOperation = "", previousOperation2 = "";
 
           if(left >= right){
             for(int i = 0; i < index; i++){
-<<<<<<< HEAD
               String temporary = "";
               String reverse = "";
               String current = arrayString[i];
@@ -763,7 +725,6 @@ public class CalculatorFrame extends JFrame{
                     readParsed[ctr2++] = current;
                     staqueray[ctr3] = temporary;
                     staqueray2[ctr3++] = reverse;
-=======
               String current = arrayString[i];
               if(current.equals("+")||current.equals("-")||current.equals("*")||current.equals("/")){
                 if(stack.isEmpty()){
@@ -785,7 +746,6 @@ public class CalculatorFrame extends JFrame{
                       postfix[ctr4++] = stack.pop();
                     }
                     stack.push(current);
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
                   }
                 }
                 previousOperation2 = previousOperation;
@@ -798,7 +758,6 @@ public class CalculatorFrame extends JFrame{
                   break;
                 }
                 stack.push(current);
-<<<<<<< HEAD
                 temporary = current;
                 reverse = new StringBuffer(temporary).reverse().toString();
                 status[ctr++] = "PUSH";
@@ -812,10 +771,8 @@ public class CalculatorFrame extends JFrame{
                 staqueray[ctr3] = temporary;
                 staqueray2[ctr3++] = reverse;
 
-=======
                 previousOperation = "";
               }else if(current.equals(")")){
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
                 right++;
                 if(i == 0){
                   isError = true;
@@ -823,7 +780,6 @@ public class CalculatorFrame extends JFrame{
                 }
                 else{
                   while(true){
-<<<<<<< HEAD
                     temporary = previousOperation + current;
                     reverse = new StringBuffer(temporary).reverse().toString();
                     String temp = stack.pop();
@@ -881,7 +837,6 @@ public class CalculatorFrame extends JFrame{
 
                 Animation2 sqa3 = new Animation2(staqueray, 5);
                 sqa3.start();
-=======
                     String temp = stack.pop();
 
                     if(!temp.equals("("))
@@ -905,7 +860,6 @@ public class CalculatorFrame extends JFrame{
                   String lol = stack.pop();
                   postfix[ctr4++] = lol;
                 }
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
               }
 
               String st = "";
@@ -915,14 +869,11 @@ public class CalculatorFrame extends JFrame{
                 }
               }
               stack.print();
-<<<<<<< HEAD
 
               written[i].setText(st);
               written[i].setFont(new Font("Open Sans", Font.BOLD, 11));
-=======
               written[i].setText(st);
               written[i].setFont(new Font("Open Sans", Font.PLAIN, 11));
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
               written[i].setForeground(new Color(10,10,10));
               written[i].setBounds(317, 160+yLabel, 200, 80);
               written[i].setVisible(false);
@@ -930,11 +881,8 @@ public class CalculatorFrame extends JFrame{
 
               for(int j = LinkedList.storeIn-1; j >= 0; j--){
                 stacks[i].setText(stacker);
-<<<<<<< HEAD
                 stacks[i].setFont(new Font("Open Sans", Font.BOLD, 11));
-=======
                 stacks[i].setFont(new Font("Open Sans", Font.PLAIN, 11));
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
                 stacks[i].setForeground(new Color(10,10,10));
                 stacks[i].setBounds(407, 160+yLabel, 200, 80);
                 mainPanel.add(stacks[i]);
@@ -948,7 +896,6 @@ public class CalculatorFrame extends JFrame{
               yLabel += 20;
               tempo = st.split(" ");
 
-<<<<<<< HEAD
             try{
               checkValidExpression(tempo);
               evaluate(tempo);
@@ -957,8 +904,6 @@ public class CalculatorFrame extends JFrame{
                 string = inputLabel.getText();
                 answerLabel.setText(string);
               }
-=======
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
             }
           }
           if(left != right){
@@ -975,8 +920,6 @@ public class CalculatorFrame extends JFrame{
           yLabel= 0;
           count = 0;
 
-<<<<<<< HEAD
-=======
 
           try{
             evaluate(tempo);
@@ -986,7 +929,6 @@ public class CalculatorFrame extends JFrame{
               answerLabel.setText(string);
             }
 
->>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
           if(event.getSource() == buttons[19] && flag3 == true){
             try{
               for(int i =0; i < 20; i++){
