@@ -1,4 +1,4 @@
-public class LinkedList {
+public class LinkedList extends Thread{
   Link first;
   Link last;
   static Link tempo;
@@ -33,9 +33,12 @@ public class LinkedList {
     int i = 0;
     while(aa != null){
       finalString[i++] = aa.toString();
+      // System.out.print(aa.toString());
       aa = aa.next;
       storeIn = i;
     }
+
+    System.out.println();
     i = 0;
     for(int j = storeIn-1; j >= 0; j--){
       str += finalString[j];
@@ -43,6 +46,7 @@ public class LinkedList {
       str = "";
     }
     CalculatorFrame.stacker = tempStr;
+    // System.out.println(tempStr);
     tempStr = "";
   }
 }
