@@ -20,6 +20,24 @@ public class Queue extends Thread{
   }
 
   public void print(){
+    // System.out.print("QUEUE: ");
+    // for(int i = 0; i < arrays.length; i++){
+    //   if(arrays[i] != null)
+    //   System.out.print(arrays[i]);
+    //   try{
+    //
+    //     Thread.sleep(500);
+    //   }catch(Exception e){
+    //
+    //   }
+    // }
+    // try{
+    //
+    //   Thread.sleep(1000);
+    // }catch(Exception e){}
+    //
+    // System.out.println();
+    // // System.out.println("\nARRAY");
     array.print();
   }
 }

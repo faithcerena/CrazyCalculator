@@ -10,6 +10,7 @@ public class Stack extends Thread{
 
   public void push(String string){
     array[ctr++] = string;
+    // System.out.println(string);
     queue.enqueue(string);
   }
 
@@ -23,6 +24,22 @@ public class Stack extends Thread{
   }
 
   public void print(){
+    // System.out.print("STACK: ");
+    // for(int i = 0; i < array.length; i++){
+    //   if(array[i] != null){
+    //     System.out.print(array[i]);
+    //     try{
+    //
+    //       Thread.sleep(500);
+    //     }catch(Exception e){
+    //
+    //     }      }
+    // }
+    // try{
+    //   Thread.sleep(1000);
+    // }catch(Exception e){}
+    //
+    // System.out.println();
     queue.print();
   }
 }
