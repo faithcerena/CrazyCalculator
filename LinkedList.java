@@ -33,7 +33,6 @@ public class LinkedList extends Thread{
     int i = 0;
     while(aa != null){
       finalString[i++] = aa.toString();
-      // System.out.print(aa.toString());
       aa = aa.next;
       storeIn = i;
     }
@@ -46,7 +45,6 @@ public class LinkedList extends Thread{
       str = "";
     }
     CalculatorFrame.stacker = tempStr;
-    // System.out.println(tempStr);
     tempStr = "";
   }
 }

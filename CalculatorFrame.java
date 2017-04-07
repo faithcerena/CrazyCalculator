@@ -1007,7 +1007,6 @@ public class CalculatorFrame extends JFrame{
               z += string.charAt(i);
             }
           }
-          System.out.println("ANS" + z);
           string = z;
 
 
