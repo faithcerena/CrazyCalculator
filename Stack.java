@@ -10,7 +10,11 @@ public class Stack extends Thread{
 
   public void push(String string){
     array[ctr++] = string;
+<<<<<<< HEAD
     // System.out.println(string);
+=======
+    //System.out.println(string);
+>>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
     queue.enqueue(string);
   }
 
@@ -24,6 +28,7 @@ public class Stack extends Thread{
   }
 
   public void print(){
+<<<<<<< HEAD
     // System.out.print("STACK: ");
     // for(int i = 0; i < array.length; i++){
     //   if(array[i] != null){
@@ -40,6 +45,13 @@ public class Stack extends Thread{
     // }catch(Exception e){}
     //
     // System.out.println();
+=======
+//     for(int i = 0; i < array.length; i++){
+//       if(array[i] != null)
+//       System.out.println(array[i]);
+//     }
+//     System.out.println("\nQUEUE");
+>>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
     queue.print();
   }
 }

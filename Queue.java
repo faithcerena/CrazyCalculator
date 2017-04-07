@@ -20,6 +20,7 @@ public class Queue extends Thread{
   }
 
   public void print(){
+<<<<<<< HEAD
     // System.out.print("QUEUE: ");
     // for(int i = 0; i < arrays.length; i++){
     //   if(arrays[i] != null)
@@ -38,6 +39,13 @@ public class Queue extends Thread{
     //
     // System.out.println();
     // // System.out.println("\nARRAY");
+=======
+//     for(int i = 0; i < arrays.length; i++){
+//       if(arrays[i] != null)
+//       System.out.println(arrays[i]);
+//     }
+    // System.out.println("\nARRAY");
+>>>>>>> a2d25e275ddd9e1838397125f432ae5bb4eb0da3
     array.print();
   }
 }
