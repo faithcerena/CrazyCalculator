@@ -78,6 +78,7 @@ public class CalculatorFrame extends JFrame{
   private LabelHandler handler = new LabelHandler();
 
   public CalculatorFrame(){
+	  //this is only a sample
     frame = this;
     mainPanel = new BackgroundPanel();
     mainPanel.setLayout(null);
@@ -368,7 +369,7 @@ public class CalculatorFrame extends JFrame{
         barLabel2.setIcon(new ImageIcon("Images/bar2.png"));
         barLabel2.setBounds(832, 158, 23, 407);
 
-        // barLabel2.setVisible(true);
+       
         closeBarLabel2.setVisible(false);
         evaluate_read.setVisible(false);
         evaluate_stack.setVisible(false);
