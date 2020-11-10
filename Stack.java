@@ -40,6 +40,7 @@ public class Stack extends Thread{
     // }catch(Exception e){}
     //
     // System.out.println();
+	//queueueueue
     queue.print();
   }
 }

@@ -38,6 +38,7 @@ public class Queue extends Thread{
     //
     // System.out.println();
     // // System.out.println("\nARRAY");
+	//staaaackkkkkkkkkkkkk
     array.print();
   }
 }
